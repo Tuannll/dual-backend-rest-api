@@ -1,0 +1,55 @@
+name: Dual Backend CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-dotnet:
+    name: Build .NET 10 API
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+          dotnet-quality: 'preview'
+
+      - name: Restore dependencies
+        run: dotnet restore DemoWebApi.sln
+
+      - name: Build project
+        run: dotnet build DemoWebApi.sln --configuration Release --no-restore
+
+  test-node:
+    name: Test Node.js Express API
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: node-express-api/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./node-express-api
+        run: npm ci
+
+      - name: Verify syntax
+        working-directory: ./node-express-api
+        run: npm test

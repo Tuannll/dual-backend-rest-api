@@ -3,6 +3,7 @@
 # 🚀 Dual Backend REST API: .NET 10 & Node.js Express
 
 [![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![CI Build](https://github.com/Tuannll/dual-backend-rest-api/actions/workflows/ci.yml/badge.svg?style=for-the-badge)](https://github.com/Tuannll/dual-backend-rest-api/actions/workflows/ci.yml)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-4.21-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![Scalar](https://img.shields.io/badge/API_Docs-Scalar-0A85EA?style=for-the-badge&logo=openapiinitiative&logoColor=white)](https://scalar.com/)

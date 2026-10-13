@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "node --watch src/app.js"
+    "dev": "node --watch src/app.js",
+    "test": "node --check src/app.js && node --check src/routes/hello.js && node --check src/routes/students.js"
   },
   "dependencies": {
     "express": "^4.21.2"
