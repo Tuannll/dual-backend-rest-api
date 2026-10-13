@@ -5,12 +5,12 @@
 **Bộ khung mẫu chuẩn RESTful API so sánh song song giữa ASP.NET Core (.NET 10) và Node.js (Express).**  
 *Được thiết kế chuẩn kiến trúc, thread-safe, validation chặt chẽ, phân trang, tìm kiếm và tài liệu hóa tự động.*
 
-[![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
-[![CI Build](https://github.com/Tuannll/dual-backend-rest-api/actions/workflows/ci.yml/badge.svg?style=for-the-badge)](https://github.com/Tuannll/dual-backend-rest-api/actions/workflows/ci.yml)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![Express](https://img.shields.io/badge/Express-4.21-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![Scalar](https://img.shields.io/badge/API_Docs-Scalar-0A85EA?style=for-the-badge&logo=openapiinitiative&logoColor=white)](https://scalar.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![CI Build](https://github.com/Tuannll/dual-backend-rest-api/actions/workflows/ci.yml/badge.svg?style=flat-square)](https://github.com/Tuannll/dual-backend-rest-api/actions/workflows/ci.yml)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-4.21-000000?style=flat-square&logo=express&logoColor=white)](https://expressjs.com/)
+[![Scalar](https://img.shields.io/badge/API_Docs-Scalar-0A85EA?style=flat-square&logo=openapiinitiative&logoColor=white)](https://scalar.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 <br />
 
