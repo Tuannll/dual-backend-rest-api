@@ -2,6 +2,9 @@
 
 # 🚀 Dual Backend REST API: .NET 10 & Node.js Express
 
+**Bộ khung mẫu chuẩn RESTful API so sánh song song giữa ASP.NET Core (.NET 10) và Node.js (Express).**  
+*Được thiết kế chuẩn kiến trúc, thread-safe, validation chặt chẽ, phân trang, tìm kiếm và tài liệu hóa tự động.*
+
 [![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
 [![CI Build](https://github.com/Tuannll/dual-backend-rest-api/actions/workflows/ci.yml/badge.svg?style=for-the-badge)](https://github.com/Tuannll/dual-backend-rest-api/actions/workflows/ci.yml)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -9,10 +12,13 @@
 [![Scalar](https://img.shields.io/badge/API_Docs-Scalar-0A85EA?style=for-the-badge&logo=openapiinitiative&logoColor=white)](https://scalar.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-*Bộ khung mẫu chuẩn RESTful API so sánh song song giữa **ASP.NET Core (.NET 10)** và **Node.js (Express)**.*  
-*Được thiết kế chuẩn kiến trúc, thread-safe, validation chặt chẽ, phân trang, tìm kiếm và tài liệu hóa tự động.*
+<br />
 
-[Tính năng](#-tính-năng-nổi-bật) • [Cấu trúc](#-cấu-trúc-thư-mục) • [Cài đặt & Chạy](#-hướng-dẫn-chạy) • [Tài liệu API](#-danh-sách-api) • [Kiểm thử](#-kiểm-thử-api)
+<p align="center">
+  <img src="./assets/scalar.png" alt="Scalar API Reference Demo" width="850" />
+</p>
+
+[Tính năng](#-tính-năng-nổi-bật) • [Cấu trúc](#-cấu-trúc-thư-mục) • [Yêu cầu](#-yêu-cầu-môi-trường) • [Hướng dẫn chạy](#-hướng-dẫn-chạy) • [Danh sách API](#-danh-sách-api) • [Kiểm thử](#-kiểm-thử-api) • [Kỹ thuật nổi bật](#-điểm-kỹ-thuật-nổi-bật) • [Giấy phép](#-giấy-phép)
 
 ---
 
@@ -68,7 +74,7 @@
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download) trở lên.
 - [Node.js](https://nodejs.org/) (phiên bản v18 trở lên) & npm.
-- IDE đề xuất: [Visual Studio Code](https://code.visualstudio.com/) (kèm extension *REST Client* hoặc *C# Dev Kit*) hoặc [Visual Studio 2022/2025].
+- IDE đề xuất: [Visual Studio Code](https://code.visualstudio.com/) (kèm extension *REST Client* hoặc *C# Dev Kit*) hoặc Visual Studio 2022/2025.
 
 ---
 
@@ -77,8 +83,9 @@
 ### 1. Chạy ASP.NET Core API (.NET 10)
 
 ```bash
-# Di chuyển vào thư mục gốc dự án
-cd DemoWebApi
+# Clone repository & di chuyển vào thư mục dự án
+git clone https://github.com/Tuannll/dual-backend-rest-api.git
+cd dual-backend-rest-api
 
 # Restore & Build dự án
 dotnet restore
@@ -115,6 +122,9 @@ npm start
 
 ## 📖 Danh sách API
 
+> [!NOTE]
+> Cả hai backend (.NET 10 và Node.js Express) đều sử dụng chung cấu trúc phản hồi `ApiResponse` đồng bộ. Phía Client / Frontend có thể chuyển đổi linh hoạt giữa hai nền tảng mà không cần thay đổi logic xử lý dữ liệu.
+
 Tất cả phản hồi đều tuân theo chuẩn Envelope thống nhất:
 
 ```json
@@ -133,6 +143,8 @@ Tất cả phản hồi đều tuân theo chuẩn Envelope thống nhất:
 | `GET` | `/api/hello` | Trả thông điệp chào hỏi mặc định |
 | `GET` | `/api/hello/{name}` | Chào hỏi cá nhân hóa theo tên |
 | `POST` | `/api/hello` | Phản hồi thông điệp kèm timestamp |
+
+---
 
 ### 🔹 2. Student Endpoints (Quản lý sinh viên)
 
@@ -173,13 +185,13 @@ curl -X POST "http://localhost:5000/api/students" \
 
 ---
 
-## 🛡️ Điểm kỹ thuật nâng cao đạt điểm tối đa
+## 🛡️ Điểm kỹ thuật nổi bật
 
-1. **Thread-Safe Architecture:** Xóa bỏ `static List<T>`, sử dụng `ConcurrentDictionary` và `Interlocked.Increment` đảm bảo không bị race condition dưới tải cao.
-2. **Dynamic Validation:** `[ValidYearOfBirth]` lấy `DateTime.UtcNow.Year` động, không lỗi thời theo năm.
-3. **Chống Bypass Khoảng Trắng:** Chặn triệt để tên rỗng hoặc toàn dấu cách qua Regex + setter trim.
-4. **Bảo vệ Phân trang:** Xử lý integer overflow khi client gửi `pageIndex` cực lớn (`int.MaxValue`).
-5. **Đồng bộ đa nền tảng:** Cả bản .NET và Node.js có cùng giao thức phản hồi, dễ dàng thay thế cho nhau phía Frontend.
+1. **Kiến trúc Thread-Safe:** Sử dụng `ConcurrentDictionary` kết hợp `Interlocked.Increment` đảm bảo an toàn đa luồng, loại bỏ nguy cơ race condition khi xử lý đồng thời dưới tải cao.
+2. **Dynamic Validation:** Attribute tùy biến `[ValidYearOfBirth]` tính toán giới hạn dựa trên `DateTime.UtcNow.Year` động theo thời gian thực, đảm bảo tính hợp lệ lâu dài.
+3. **Chặn khoảng trắng toàn diện:** Loại trừ triệt để tên rỗng hoặc chuỗi toàn khoảng trắng thông qua Regex kết hợp setter trim tự động.
+4. **Bảo vệ phân trang chống tràn số:** Xử lý an toàn hiện tượng integer overflow khi nhận `pageIndex` hoặc `pageSize` vượt ngưỡng số nguyên (`int.MaxValue`).
+5. **Giao thức đồng bộ đa nền tảng:** Cả hai phiên bản .NET và Node.js dùng chung cấu trúc phản hồi chuẩn, giúp tầng Frontend thay thế hoặc hoán đổi backend liền mạch.
 
 ---
 
