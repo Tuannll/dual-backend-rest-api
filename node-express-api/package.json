@@ -1,0 +1,13 @@
+{
+  "name": "node-express-api",
+  "version": "1.0.0",
+  "description": "Express API sample matching the C# demo endpoints",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

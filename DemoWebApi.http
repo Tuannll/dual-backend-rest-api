@@ -1,0 +1,68 @@
+@DemoWebApi_HostAddress = http://localhost:5000
+
+### 1. Hello API
+GET {{DemoWebApi_HostAddress}}/api/hello
+Accept: application/json
+
+### 2. Hello API với tên
+GET {{DemoWebApi_HostAddress}}/api/hello/NguyenVanA
+Accept: application/json
+
+### 3. Gửi thông điệp
+POST {{DemoWebApi_HostAddress}}/api/hello
+Content-Type: application/json
+
+{
+  "text": "Xin chào từ VS Code REST Client!"
+}
+
+### 4. Lấy danh sách sinh viên (phân trang & tìm kiếm)
+GET {{DemoWebApi_HostAddress}}/api/students?pageIndex=1&pageSize=10
+Accept: application/json
+
+### 5. Tìm kiếm sinh viên theo tên
+GET {{DemoWebApi_HostAddress}}/api/students?keyword=Nguyen&pageIndex=1&pageSize=10
+Accept: application/json
+
+### 6. Lấy chi tiết sinh viên theo ID
+GET {{DemoWebApi_HostAddress}}/api/students/1
+Accept: application/json
+
+### 7. Tạo sinh viên mới (Hợp lệ)
+POST {{DemoWebApi_HostAddress}}/api/students
+Content-Type: application/json
+
+{
+  "fullName": "Phạm Văn D",
+  "yearOfBirth": 2005
+}
+
+### 8. Tạo sinh viên mới (Kiểm tra Validation lỗi: chỉ toàn dấu cách)
+POST {{DemoWebApi_HostAddress}}/api/students
+Content-Type: application/json
+
+{
+  "fullName": "   ",
+  "yearOfBirth": 2005
+}
+
+### 9. Tạo sinh viên mới (Kiểm tra Validation lỗi: thiếu năm sinh)
+POST {{DemoWebApi_HostAddress}}/api/students
+Content-Type: application/json
+
+{
+  "fullName": "Hoàng Thị E"
+}
+
+### 10. Cập nhật sinh viên
+PUT {{DemoWebApi_HostAddress}}/api/students/1
+Content-Type: application/json
+
+{
+  "fullName": "Nguyễn Văn A (Cập nhật)",
+  "yearOfBirth": 2003
+}
+
+### 11. Xóa sinh viên
+DELETE {{DemoWebApi_HostAddress}}/api/students/1
+Accept: application/json
